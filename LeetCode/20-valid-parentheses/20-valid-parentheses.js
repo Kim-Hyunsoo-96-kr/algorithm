@@ -3,68 +3,79 @@
  * @return {boolean}
  */
 var isValid = function (s) {
-  let stack = new Stack();
-
+  // let stack = new Stack();
+    let stackArr = [];
   for (let i = 0; i < s.length; i++) {
-    
-    if (stack.size === 0) {
-      stack.push(s[i]);
-    } else {
-      if ((s[i] === ')' && stack.top() === '(') || (s[i] === '}' && stack.top() === '{') || (s[i] === ']' && stack.top() === '[')) {
-        stack.pop();
-      } else {
-        stack.push(s[i]);
-      }
+    if(stackArr.length === 0) {
+        stackArr.push(s[i]);
     }
+      else {
+          if ((s[i] === ')' && stackArr[stackArr.length-1] === '(') || (s[i] === '}' && stackArr[stackArr.length-1] === '{') || (s[i] === ']' && stackArr[stackArr.length-1] === '[')) stackArr.pop();
+      else {
+          stackArr.push(s[i]);
+      }
+      } 
+      
+    // if (stack.size === 0) {
+    //   stack.push(s[i]);
+    // } else {
+    //   if ((s[i] === ')' && stack.top() === '(') || (s[i] === '}' && stack.top() === '{') || (s[i] === ']' && stack.top() === '[')) {
+    //     stack.pop();
+    //   } else {
+    //     stack.push(s[i]);
+    //   }
+    // }
   }
 
-  if (stack.size === 0) return true;
-  else return false;
+    if(stackArr.length === 0) return true;
+    else return false;
+  // if (stack.size === 0) return true;
+  // else return false;
 };
 
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.next = null;
-  }
-}
+// class Node {
+//   constructor(value) {
+//     this.value = value;
+//     this.next = null;
+//   }
+// }
 
-class Stack {
-  constructor() {
-    this.head = null;
-    this.tail = null;
-    this.size = 0;
-  }
+// class Stack {
+//   constructor() {
+//     this.head = null;
+//     this.tail = null;
+//     this.size = 0;
+//   }
 
-  push(value) {
-    let newNode = new Node(value);
-    if (!this.head) {
-      this.head = newNode;
-      this.tail = newNode;
-    } else {
-      newNode.next = this.head;
-      this.head = newNode;
-    }
-    this.size++;
-  }
+//   push(value) {
+//     let newNode = new Node(value);
+//     if (!this.head) {
+//       this.head = newNode;
+//       this.tail = newNode;
+//     } else {
+//       newNode.next = this.head;
+//       this.head = newNode;
+//     }
+//     this.size++;
+//   }
 
-  pop() {
-    if (!this.head) return null;
-    else {
-      let popNode = this.head;
-      if (this.head === this.tail) {
-        this.tail = null;
-        this.head = null;
-      } else {
-        this.head = this.head.next;
-      }
-      this.size--;
-      return popNode.value;
-    }
-  }
+//   pop() {
+//     if (!this.head) return null;
+//     else {
+//       let popNode = this.head;
+//       if (this.head === this.tail) {
+//         this.tail = null;
+//         this.head = null;
+//       } else {
+//         this.head = this.head.next;
+//       }
+//       this.size--;
+//       return popNode.value;
+//     }
+//   }
 
-  top() {
-    if (!this.head) return null;
-    else return this.head.value;
-  }
-}
+//   top() {
+//     if (!this.head) return null;
+//     else return this.head.value;
+//   }
+// }
